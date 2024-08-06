@@ -1,0 +1,45 @@
+<html layout:decorate="~{layout.html}">
+
+<main layout:fragment="main" class="flex-grow flex items-center justify-center">
+    <script>
+        function submitLoginForm(form) {
+            form.username.value = form.username.value.trim();
+
+            if ( form.username.value.length == 0 ) {
+                alert("아이디를 입력해주세요.");
+                form.username.focus();
+                return;
+            }
+            if ( form.password.value.length == 0 ) {
+                alert("비밀번호를 입력해주세요.");
+                form.password.focus();
+                return;
+            }
+
+            form.submit();
+        }
+    </script>
+
+    <form th:action method="POST" class="w-full max-w-md grid grid-cols-1 gap-4" onsubmit="submitLoginForm(this); return false">
+        <label class="form-control w-full">
+            <div class="label">
+                <span class="label-text">아이디</span>
+            </div>
+            <input name="username" type="text" placeholder="아이디" class="input input-bordered w-fulls" />
+        </label>
+
+        <label class="form-control w-full">
+            <div class="label">
+                <span class="label-text">비밀번호</span>
+            </div>
+            <input name="password" type="password" placeholder="비밀번호" class="input input-bordered w-fulls" />
+        </label>
+
+        <div>
+            <button type="submit" class="btn btn-primay">로그인</button>
+            <a href="/oauth2/authorization/kakao" class="btn btn-primay">카카오로그인</a>
+        </div>
+    </form>
+</main>
+
+</html>
