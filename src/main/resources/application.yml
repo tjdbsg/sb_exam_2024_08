@@ -4,40 +4,42 @@ spring:
   output:
     ansi:
       enabled: always
+  thymeleaf:
+    cache: false
   h2:
     console:
       enabled: true
-    datasource:
-      url: jdbc:h2:./db_dev;MODE=PostgreSQL
-      username: sa
-      password:
-      driver-class-name: org.h2.Driver
-    jpa:
-      hibernate:
-        ddl-auto: update
+  datasource:
+    url: jdbc:h2:./db_dev;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         default_batch_fetch_size: 100
         format_sql: true
         highlight_sql: true
         use_sql_comments: true
-      open-in-view: false
-    security:
-      oauth2:
-        client:
-          registration:
-            kakao:
-              clientId: a33d4103e7e70b5fc66873d82b15ba8c
-              scope: profile_nickname, profile_image
-              client-name: Kakao
-              authorization-grant-type: authorization_code
-              redirect-uri: http://localhost:8020/login/oauth2/code/kakao
-          provider:
-            kakao:
-              authorization-uri: https://kauth.kakao.com/oauth/authorize
-              token-uri: https://kauth.kakao.com/oauth/token
-              user-info-uri: https://kapi.kakao.com/v2/user/me
-              user-name-attribute: id
+    open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            clientId: 490cab3d4316d81ce43f1c86d8024ea8
+            scope: profile_nickname, profile_image
+            client-name: Kakao
+            authorization-grant-type: authorization_code
+            redirect-uri: http://localhost:8020/login/oauth2/code/kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
 logging:
   level:
     com.ll.sapp: DEBUG
