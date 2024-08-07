@@ -25,6 +25,8 @@ public class Member extends BaseTime {
     @Column(unique = true)
     private String username;
     private String password;
+    @Column(unique = true)
+    private String email;
     private String nickname;
     private String profileImgUrl;
 
@@ -46,6 +48,10 @@ public class Member extends BaseTime {
             authorities.add("ROLE_ADMIN");
 
         return authorities;
+    }
+
+    public String getName() {
+        return getNickname();
     }
 
     public boolean isAdmin() {

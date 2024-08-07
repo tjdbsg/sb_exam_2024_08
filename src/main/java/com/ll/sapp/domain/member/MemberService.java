@@ -31,6 +31,7 @@ public class MemberService {
         Member member = Member.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
+                .email(email)
                 .nickname(nickname)
                 .profileImgUrl(profileImgUrl)
                 .build();

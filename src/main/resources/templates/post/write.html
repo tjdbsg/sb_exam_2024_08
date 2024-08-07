@@ -1,0 +1,59 @@
+<html layout:decorate="~{layout.html}">
+
+<main layout:fragment="main" class="flex-grow flex items-center justify-center">
+    <script>
+        function submitWritePostForm(form) {
+            form.title.value = form.title.value.trim();
+
+            if ( form.title.value.length == 0 ) {
+                alert("제목을 입력해주세요.");
+                form.title.focus();
+                return;
+            }
+
+            form.body.value = form.body.value.trim();
+
+            if ( form.body.value.length == 0 ) {
+                alert("내용을 입력해주세요.");
+                form.body.focus();
+                return;
+            }
+
+            form.submit();
+        }
+    </script>
+
+    <div class="max-w-2xl w-full px-4">
+        <h1 class="mb-4">
+            <i class="fa-solid fa-pen-nib"></i>
+            글 작성
+        </h1>
+
+        <form th:action method="POST" class="flex flex-col gap-6" onsubmit="submitWritePostForm(this); return false;">
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">제목</span>
+                </label>
+                <input name="title" type="text" placeholder="제목" class="input input-bordered" autofocus/>
+            </div>
+
+            <div class="form-control">
+                <label class="label">
+                    <span class="label-text">내용</span>
+                </label>
+                <textarea name="body" placeholder="내용" class="textarea textarea-bordered !min-h-[calc(100dvh-400px)]"></textarea>
+            </div>
+
+            <button class="btn btn-block btn-primary gap-1">
+                <i class="fa-solid fa-pen-nib"></i>
+                <span>글 작성</span>
+            </button>
+
+            <div class="flex flex-wrap justify-center">
+                <a href="/post/list" class="btn btn-link">글 목록</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+</html>
